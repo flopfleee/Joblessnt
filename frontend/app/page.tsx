@@ -187,9 +187,15 @@ useEffect(() => {
           </p>
 
           <p className="mt-2 text-sm text-gray-500">
-            £{job.salary_min.toLocaleString()} - £
-            {job.salary_max.toLocaleString()} · {job.work_mode}
-          </p>
+  {job.salary_min != null && job.salary_max != null
+    ? `£${job.salary_min.toLocaleString()} - £${job.salary_max.toLocaleString()}`
+    : job.salary_min != null
+      ? `From £${job.salary_min.toLocaleString()}`
+      : job.salary_max != null
+        ? `Up to £${job.salary_max.toLocaleString()}`
+        : "Salary not specified"}{" "}
+  · {job.work_mode}
+</p>
 
           <p className="mt-2 text-sm text-gray-500">
             Deadline: {job.deadline}
